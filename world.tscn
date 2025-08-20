@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvi6ck4244jgv"]
+
+[ext_resource type="PackedScene" uid="uid://dtbd5e0jfvjdl" path="res://level_first.tscn" id="1_wqfo5"]
+
+[node name="world" type="Node2D"]
+metadata/_edit_horizontal_guides_ = [-232.0]
+
+[node name="LevelFirst" parent="." instance=ExtResource("1_wqfo5")]

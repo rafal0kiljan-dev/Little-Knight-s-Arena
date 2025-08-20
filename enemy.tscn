@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://co5u5hc5tf7xl"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_g3u08"]
+[ext_resource type="Texture2D" uid="uid://bxlabwkmbfuwv" path="res://slam1.png" id="2_58yki"]
+[ext_resource type="Texture2D" uid="uid://coaftihebm3fv" path="res://slam2.png" id="3_bgb6m"]
+[ext_resource type="Texture2D" uid="uid://bht2a7keud2ma" path="res://slam3.png" id="4_dbjlm"]
+[ext_resource type="Texture2D" uid="uid://cv5pbpqbfp3hm" path="res://explosion1.png" id="5_dkygs"]
+[ext_resource type="Texture2D" uid="uid://c8rkpbp3epgqm" path="res://explosion2.png" id="6_fpi5o"]
+[ext_resource type="Texture2D" uid="uid://b6rd1i0hqhvsh" path="res://explosion3.png" id="7_bpiiy"]
+[ext_resource type="Texture2D" uid="uid://burxj3di7t5pd" path="res://explosion4.png" id="8_quuab"]
+[ext_resource type="AudioStream" uid="uid://bbxboi5m71oeo" path="res://explosion02.wav" id="9_pvie2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbe0b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_58yki")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bgb6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dbjlm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p8n3j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34vpm"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("5_dkygs")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_fpi5o")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_bpiiy")
+}, {
+"duration": 0.5,
+"texture": ExtResource("8_quuab")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="Area2D"]
+position = Vector2(575, 504)
+script = ExtResource("1_g3u08")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -9)
+scale = Vector2(0.0681626, 0.0681626)
+sprite_frames = SubResource("SpriteFrames_mbe0b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_p8n3j")
+
+[node name="ExplodeAnim" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_34vpm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_pvie2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="ExplodeAnim" to="." method="_on_explode_anim_animation_finished"]

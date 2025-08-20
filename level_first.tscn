@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://dtbd5e0jfvjdl"]
+
+[ext_resource type="Script" path="res://levelFirst.gd" id="1_fu0sj"]
+[ext_resource type="Texture2D" uid="uid://c62kpvpf5xudk" path="res://background.png" id="2_ku137"]
+[ext_resource type="PackedScene" uid="uid://dhxdrywvb1hru" path="res://barrier.tscn" id="3_hxjgt"]
+[ext_resource type="PackedScene" uid="uid://ije8jybj7j25" path="res://player.tscn" id="4_27bkk"]
+[ext_resource type="PackedScene" uid="uid://co5u5hc5tf7xl" path="res://enemy.tscn" id="5_dk0cp"]
+[ext_resource type="PackedScene" uid="uid://c2ecurrium5lg" path="res://heart.tscn" id="6_qyv2v"]
+[ext_resource type="AudioStream" uid="uid://ci3xjmn3bvh56" path="res://Beat Thee.mp3" id="7_dg5p3"]
+
+[node name="LevelFirst" type="Node2D"]
+script = ExtResource("1_fu0sj")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(579, 325)
+scale = Vector2(0.607914, 0.607914)
+texture = ExtResource("2_ku137")
+
+[node name="Barrier" parent="." instance=ExtResource("3_hxjgt")]
+
+[node name="Player" parent="." instance=ExtResource("4_27bkk")]
+position = Vector2(676, 487)
+
+[node name="Health" type="Label" parent="."]
+offset_top = 9.0
+offset_right = 215.0
+offset_bottom = 32.0
+
+[node name="Experience" type="Label" parent="."]
+offset_top = 27.0
+offset_right = 40.0
+offset_bottom = 50.0
+
+[node name="Enemy" parent="." instance=ExtResource("5_dk0cp")]
+position = Vector2(244, 503)
+
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 5.222
+autostart = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 5.509
+autostart = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.496
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 518.0
+offset_top = 46.0
+offset_right = 558.0
+offset_bottom = 69.0
+
+[node name="Timer4" type="Timer" parent="."]
+wait_time = 21.788
+autostart = true
+
+[node name="Heart" parent="." instance=ExtResource("6_qyv2v")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_dg5p3")
+volume_db = 3.095
+attenuation = 0.732043
+
+[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]

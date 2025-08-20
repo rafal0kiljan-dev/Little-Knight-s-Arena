@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2ecurrium5lg"]
+
+[ext_resource type="Script" path="res://heart.gd" id="1_xu4rn"]
+[ext_resource type="Texture2D" uid="uid://b7vsdbs71bwo2" path="res://heart.png" id="2_6v1h8"]
+[ext_resource type="AudioStream" uid="uid://dsmjrnho2krum" path="res://sound-effects-library-cash-register-sound.mp3" id="3_xli25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sgvh"]
+size = Vector2(65, 47.5)
+
+[node name="Heart" type="Area2D"]
+position = Vector2(533, 398)
+script = ExtResource("1_xu4rn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10.5, -15.25)
+shape = SubResource("RectangleShape2D_1sgvh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12, -4)
+scale = Vector2(0.10101, 0.10101)
+texture = ExtResource("2_6v1h8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xli25")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
