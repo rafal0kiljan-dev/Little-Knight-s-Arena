@@ -1,6 +1,4 @@
 # Little-Knight-s-Arena ⚔️
->
-
 
 #### A short arcade game written in GDScript
 >
